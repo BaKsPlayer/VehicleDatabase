@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1321562812213887629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 523eac09948094451bc9712aa20a3e4d, type: 3}
+  m_Name: Bismark 1939
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 951708510, guid: 5207e3a3e43f24914a970848e86ce44c, type: 3}
+  _name: Bismark 1939
+  _weight: 50000
+  _capacity: 500
+  _maxSpeed: 150
+  _displacement: 20000
+--- !u!114 &-1036177402043655285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffbd7ac417ca04d1db3607cf012336a6, type: 3}
+  m_Name: BMW E34
+  m_EditorClassIdentifier: 
+  _icon: {fileID: -1705823825, guid: 5207e3a3e43f24914a970848e86ce44c, type: 3}
+  _name: BMW E34
+  _weight: 1500
+  _capacity: 4
+  _maxSpeed: 260
+  _color: Black
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f55b9ca845f4fccafc4a9dc99569e5, type: 3}
+  m_Name: Beauty Vehicles
+  m_EditorClassIdentifier: 
+  _vehiclesList:
+  - {fileID: -1321562812213887629}
+  - {fileID: 3521053545494751511}
+  - {fileID: -1036177402043655285}
+  - {fileID: 1782744093990545153}
+  - {fileID: 6412529578907663758}
+  _currentVehicle: {fileID: 6412529578907663758}
+--- !u!114 &1782744093990545153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 427298e0269684233a94d18304ef8238, type: 3}
+  m_Name: Ducatti Diavel
+  m_EditorClassIdentifier: 
+  _icon: {fileID: -505534951, guid: 5207e3a3e43f24914a970848e86ce44c, type: 3}
+  _name: Ducatti Diavel
+  _weight: 400
+  _capacity: 2
+  _maxSpeed: 230
+  _size: {x: 2150, y: 835, z: 1330}
+--- !u!114 &3521053545494751511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254c4e2d6432d434080ff938c5754f4e, type: 3}
+  m_Name: Boeing 737
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 141044083, guid: 5207e3a3e43f24914a970848e86ce44c, type: 3}
+  _name: Boeing 737
+  _weight: 5000
+  _capacity: 100
+  _maxSpeed: 1000
+  _liftingForce: 7000
+--- !u!114 &6412529578907663758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffbd7ac417ca04d1db3607cf012336a6, type: 3}
+  m_Name: Mercedes S63
+  m_EditorClassIdentifier: 
+  _icon: {fileID: -1705823825, guid: 5207e3a3e43f24914a970848e86ce44c, type: 3}
+  _name: Mercedes S63
+  _weight: 2180
+  _capacity: 4
+  _maxSpeed: 250
+  _color: Yellow
