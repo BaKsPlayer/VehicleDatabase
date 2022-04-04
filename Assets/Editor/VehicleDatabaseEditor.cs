@@ -41,17 +41,20 @@ public class VehicleDatabaseEditor : Editor
 
         _selectedTypeIndex = GetCurrentTypeIndex();
 
-        DrawCurrentVehicle();
-        GUILayout.Space(8);
+        DrawEditor();
+    }
 
+    private void DrawEditor()
+    {
+        DrawCurrentVehicle();
+
+        GUILayout.Space(8);
         DrawVehicleSwitches();
 
         GUILayout.Space(16);
-
         DrawVehiclesList();
 
         GUILayout.Space(8);
-
         DrawVehiclesListSwitches();
     }
 

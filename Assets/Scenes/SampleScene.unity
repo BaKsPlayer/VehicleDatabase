@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _contentTransform: {fileID: 1854910897}
-  _database: {fileID: 11400000, guid: b5492b121f8c34343ba8686f8e3098ef, type: 2}
+  _database: {fileID: 11400000, guid: 8d7d5f3ef7b87414bbe487114549a643, type: 2}
   _vehicleCard: {fileID: 254674010279294256, guid: 2561c6a0fb8f4487b9df8506b421239e, type: 3}
 --- !u!114 &72863367
 MonoBehaviour:
@@ -699,6 +699,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeautyTransportCard (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 254674010279294256, guid: 2561c6a0fb8f4487b9df8506b421239e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 254674010279294257, guid: 2561c6a0fb8f4487b9df8506b421239e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -800,6 +804,10 @@ PrefabInstance:
     - target: {fileID: 254674010279294256, guid: 2561c6a0fb8f4487b9df8506b421239e, type: 3}
       propertyPath: m_Name
       value: BeautyTransportCard (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 254674010279294256, guid: 2561c6a0fb8f4487b9df8506b421239e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 254674010279294257, guid: 2561c6a0fb8f4487b9df8506b421239e, type: 3}
       propertyPath: m_Pivot.x
@@ -962,6 +970,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1041438224}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &790219395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1031,6 +1051,10 @@ PrefabInstance:
     - target: {fileID: 254674010279294256, guid: 2561c6a0fb8f4487b9df8506b421239e, type: 3}
       propertyPath: m_Name
       value: BeautyTransportCard (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 254674010279294256, guid: 2561c6a0fb8f4487b9df8506b421239e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 254674010279294257, guid: 2561c6a0fb8f4487b9df8506b421239e, type: 3}
       propertyPath: m_Pivot.x
@@ -1172,7 +1196,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1503,6 +1527,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1041438224}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1492006541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1666,6 +1702,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1041438224}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 790219393}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -1970,7 +2018,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 100.15271, y: 404}
+  m_AnchoredPosition: {x: 100.15259, y: 404}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1745421025
@@ -2029,6 +2077,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1041438224}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1745421026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2082,6 +2142,10 @@ PrefabInstance:
     - target: {fileID: 254674010279294256, guid: 0db7c61c7244141309b7127ad02f7427, type: 3}
       propertyPath: m_Name
       value: TransportCard (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 254674010279294256, guid: 0db7c61c7244141309b7127ad02f7427, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 254674010279294257, guid: 0db7c61c7244141309b7127ad02f7427, type: 3}
       propertyPath: m_Pivot.x
@@ -2253,9 +2317,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1854910897}
     m_Modifications:
+    - target: {fileID: 254674009371374364, guid: 2561c6a0fb8f4487b9df8506b421239e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 254674010279294256, guid: 2561c6a0fb8f4487b9df8506b421239e, type: 3}
       propertyPath: m_Name
       value: BeautyTransportCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 254674010279294256, guid: 2561c6a0fb8f4487b9df8506b421239e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 254674010279294257, guid: 2561c6a0fb8f4487b9df8506b421239e, type: 3}
       propertyPath: m_Pivot.x
@@ -2341,6 +2413,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 254674011149059455, guid: 2561c6a0fb8f4487b9df8506b421239e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2561c6a0fb8f4487b9df8506b421239e, type: 3}
 --- !u!1001 &2101915928
@@ -2353,6 +2429,10 @@ PrefabInstance:
     - target: {fileID: 254674010279294256, guid: 0db7c61c7244141309b7127ad02f7427, type: 3}
       propertyPath: m_Name
       value: TransportCard (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 254674010279294256, guid: 0db7c61c7244141309b7127ad02f7427, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 254674010279294257, guid: 0db7c61c7244141309b7127ad02f7427, type: 3}
       propertyPath: m_Pivot.x
@@ -2451,6 +2531,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TransportCard (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 254674010279294256, guid: 0db7c61c7244141309b7127ad02f7427, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 254674010279294257, guid: 0db7c61c7244141309b7127ad02f7427, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2547,6 +2631,10 @@ PrefabInstance:
     - target: {fileID: 254674010279294256, guid: 0db7c61c7244141309b7127ad02f7427, type: 3}
       propertyPath: m_Name
       value: TransportCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 254674010279294256, guid: 0db7c61c7244141309b7127ad02f7427, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 254674010279294257, guid: 0db7c61c7244141309b7127ad02f7427, type: 3}
       propertyPath: m_Pivot.x
