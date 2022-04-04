@@ -1,9 +1,10 @@
 using UnityEngine;
 
+[System.Serializable]
 public class Airplane : Vehicle
 {
-    [SerializeField] protected float liftingForce;
-    public float LiftingForce => liftingForce;
+    [SerializeField] protected float _liftingForce;
+    public float LiftingForce => _liftingForce;
 
     public override string GetDescription()
     {

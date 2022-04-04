@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffbd7ac417ca04d1db3607cf012336a6, type: 3}
   m_Name: BMW E34
   m_EditorClassIdentifier: 
-  _icon: {fileID: 397986962, guid: ebc55b7fffa9a46c59c0a1766ca1b820, type: 3}
+  _icon: {fileID: -1705823825, guid: 5207e3a3e43f24914a970848e86ce44c, type: 3}
   _name: BMW E34
   _weight: 1500
   _capacity: 4
@@ -30,7 +30,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffbd7ac417ca04d1db3607cf012336a6, type: 3}
   m_Name: Mercedes S63
   m_EditorClassIdentifier: 
-  _icon: {fileID: 397986962, guid: ebc55b7fffa9a46c59c0a1766ca1b820, type: 3}
+  _icon: {fileID: -1705823825, guid: 5207e3a3e43f24914a970848e86ce44c, type: 3}
   _name: Mercedes S63
   _weight: 2180
   _capacity: 4
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 254c4e2d6432d434080ff938c5754f4e, type: 3}
   m_Name: Boeing 737
   m_EditorClassIdentifier: 
-  _icon: {fileID: -1068638378, guid: ebc55b7fffa9a46c59c0a1766ca1b820, type: 3}
+  _icon: {fileID: 141044083, guid: 5207e3a3e43f24914a970848e86ce44c, type: 3}
   _name: Boeing 737
   _weight: 5000
   _capacity: 100
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39f55b9ca845f4fccafc4a9dc99569e5, type: 3}
-  m_Name: Vehicles
+  m_Name: BeatyVehicles
   m_EditorClassIdentifier: 
   vehiclesList:
   - {fileID: 9140452696516717471}
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 427298e0269684233a94d18304ef8238, type: 3}
   m_Name: Ducati Diavel
   m_EditorClassIdentifier: 
-  _icon: {fileID: 48514461, guid: ebc55b7fffa9a46c59c0a1766ca1b820, type: 3}
+  _icon: {fileID: -505534951, guid: 5207e3a3e43f24914a970848e86ce44c, type: 3}
   _name: Ducati Diavel
   _weight: 400
   _capacity: 2
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523eac09948094451bc9712aa20a3e4d, type: 3}
   m_Name: Bismark 1939
   m_EditorClassIdentifier: 
-  _icon: {fileID: 1064405862, guid: ebc55b7fffa9a46c59c0a1766ca1b820, type: 3}
+  _icon: {fileID: 951708510, guid: 5207e3a3e43f24914a970848e86ce44c, type: 3}
   _name: Bismark 1939
   _weight: 50000
   _capacity: 500

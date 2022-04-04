@@ -1,9 +1,11 @@
 using UnityEngine;
 
+[System.Serializable]
 public class Ship : Vehicle
 {
-    [SerializeField] protected float displacement;
-    public float Displacement => displacement;
+
+    [SerializeField] protected float _displacement;
+    public float Displacement => _displacement;
 
     public override string GetDescription()
     {

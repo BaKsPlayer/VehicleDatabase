@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,67 +10,53 @@ public class VehicleDatabaseEditor : Editor
 {
     private VehicleDatabase database;
 
-    private enum VehicleType
-    {
-        Airplane, Bike, Car, Ship
-    }
-
-    private VehicleType vehicleType;
-    private VehicleType prevVehicleType;
-
     private int _currentPage = 1;
     private int _totalPagesCount => Mathf.CeilToInt((float)database.VehicleList.Count / 10);
 
     private int _visibleObjectsNumber = 10;
 
+    private List<Type> _vehicleTypes = new List<Type>();
+    private int _selectedTypeIndex;
+
     private void Awake()
     {
         database = (VehicleDatabase)target;
+
+        Type baseType = typeof(Vehicle);
+        _vehicleTypes = Assembly.GetAssembly(baseType).GetTypes().Where(type => type.IsSubclassOf(baseType)).ToList();
+
+        database.VehicleList.RemoveAll(vehicle => vehicle == null);
+
+        if (database.VehicleList.Count == 0)
+            database.AddElement<Vehicle>();
+
+        if (database.CurrentVehicle == null)
+            database.SelectCurrentVehicle(database.VehicleList[0]);
     }
 
     public override void OnInspectorGUI()
     {
-        PrintCurrentVehicle();
-        GUILayout.Space(20);
+        if (database.CurrentVehicle == null)
+            return;
 
-        GUILayout.BeginHorizontal();
+        _selectedTypeIndex = GetCurrentTypeIndex();
 
-        if (GUILayout.Button("Add"))
-        {
-            database.AddElement(new Vehicle());
-            _currentPage = _totalPagesCount;
-        }
+        DrawCurrentVehicle();
+        GUILayout.Space(8);
 
-        if (GUILayout.Button("Remove"))
-        {
-            database.RemoveElement();
-        }
+        DrawVehicleSwitches();
 
-        if (GUILayout.Button("<="))
-        {
-            database.GetPrevious();
-        }
+        GUILayout.Space(16);
 
-        if (GUILayout.Button("=>"))
-        {
-            database.GetNext();
-        }
+        DrawVehiclesList();
 
-        GUILayout.EndHorizontal();
+        GUILayout.Space(8);
 
-        GUILayout.Space(20);
-        GUILayout.Label("Vehicle List:");
+        DrawVehiclesListSwitches();
+    }
 
-        var vehicles = database.VehicleList
-            .Skip(_visibleObjectsNumber * (_currentPage - 1))
-            .Take(_visibleObjectsNumber);
-        foreach (var vehicle in vehicles)
-        {
-            if (GUILayout.Button(vehicle.VehicleName))
-                database.SetCurrentVehicle(vehicle);
-        }
-
-        GUILayout.Space(5);
+    private void DrawVehiclesListSwitches()
+    {
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("<=="))
         {
@@ -91,41 +79,89 @@ public class VehicleDatabaseEditor : Editor
             database.RemoveAll();
             _currentPage = 1;
         }
+
     }
 
-    private void PrintCurrentVehicle()
+    private void DrawVehiclesList()
+    {
+        GUILayout.Label("Vehicle List:");
+
+        var vehicles = database.VehicleList
+            .Skip(_visibleObjectsNumber * (_currentPage - 1))
+            .Take(_visibleObjectsNumber);
+
+        foreach (var vehicle in vehicles)
+            if (GUILayout.Button($"{vehicle.Name} ({vehicle.GetType()})"))
+                database.SelectCurrentVehicle(vehicle);
+    }
+
+    private void DrawVehicleSwitches()
+    {
+        GUILayout.BeginHorizontal();
+
+        if (GUILayout.Button("Add"))
+        {
+            database.AddElement<Vehicle>();
+            _selectedTypeIndex = 0;
+            _currentPage = _totalPagesCount;
+        }
+
+        if (GUILayout.Button("Remove"))
+            database.RemoveElement();
+
+        if (GUILayout.Button("<="))
+            database.GetPrevious();
+
+        if (GUILayout.Button("=>"))
+            database.GetNext();
+
+        GUILayout.EndHorizontal();
+    }
+
+    private void DrawCurrentVehicle()
     {
         EditorGUILayout.LabelField($"Current Vehicle: ({database.CurrentIndex + 1}/{database.VehicleList.Count})");
 
-        GUILayout.BeginHorizontal();
-        EditorGUILayout.PrefixLabel("VehicleType:");
-        vehicleType = (VehicleType) EditorGUILayout.EnumPopup(vehicleType);
-        GUILayout.EndHorizontal();
-        ChangeVehicleType();
+        var vehiclesStringArray = _vehicleTypes.Select(type => type.ToString()).ToArray();
+        if (vehiclesStringArray.Length > 0)
+        {
+            _selectedTypeIndex = EditorGUILayout.Popup("VehicleType:", _selectedTypeIndex, vehiclesStringArray);
+            CheckVehicleType();
+        }
 
-        serializedObject.Update();
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("currentVehicle.icon"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("currentVehicle.vehicleName"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("currentVehicle.weight"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("currentVehicle.capacity"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("currentVehicle.maxSpeed"));
-        serializedObject.ApplyModifiedProperties();
+        var fieldsToDraw = GetCurrentVehicleFields();
+
+        SerializedObject serializedCurrentVehicle = new SerializedObject(database.CurrentVehicle);
+        serializedCurrentVehicle.Update();
+
+        foreach (var field in fieldsToDraw)
+            EditorGUILayout.PropertyField(serializedCurrentVehicle.FindProperty(field.Name));
+
+        serializedCurrentVehicle.ApplyModifiedProperties();
+
+        database.CurrentVehicle.name = $"{database.CurrentVehicle.Name}";
     }
 
-    private void ChangeVehicleType()
+    private IEnumerable<FieldInfo> GetCurrentVehicleFields()
     {
-        if (prevVehicleType != vehicleType)
-        {
-            prevVehicleType = vehicleType;
-            Debug.Log("vehicleType changed: " + vehicleType);
+        var vehicleFields = typeof(Vehicle).GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
 
-            switch (vehicleType)
-            {
-                case VehicleType.Bike:
+        var currentVehicleFields = database.CurrentVehicle.GetType()
+            .GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
+            .SkipLast(vehicleFields.Count());
 
-                    break;
-            }
-        }
+        return vehicleFields.Concat(currentVehicleFields);
+    }
+
+    private void CheckVehicleType()
+    {
+        if (database.CurrentVehicle.GetType() != _vehicleTypes[_selectedTypeIndex])
+            database.ConvertCurrentVehicleTo(_vehicleTypes[_selectedTypeIndex]);
+    }
+
+    private int GetCurrentTypeIndex()
+    {
+        return Mathf.Clamp(_vehicleTypes.IndexOf(database.CurrentVehicle.GetType()), 0, int.MaxValue);
     }
 
 }

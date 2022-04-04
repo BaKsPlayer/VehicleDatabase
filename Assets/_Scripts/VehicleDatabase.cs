@@ -1,78 +1,138 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Databases/Vehicles", fileName = "Vehicles")]
 public class VehicleDatabase : ScriptableObject
 {
-    [SerializeField, HideInInspector] private List<Vehicle> vehiclesList = new List<Vehicle>();
-    public List<Vehicle> VehicleList => vehiclesList;
+    [SerializeField] private List<Vehicle> _vehiclesList = new List<Vehicle>();
+    public List<Vehicle> VehicleList => _vehiclesList;
 
-    [SerializeField] private Vehicle currentVehicle;
-    public Vehicle CurrentVehicle => currentVehicle;
+    [SerializeField] private Vehicle _currentVehicle;
+    public Vehicle CurrentVehicle => _currentVehicle;
 
-    private int currentIndex;
-    public int CurrentIndex => currentIndex;
+    private int _currentIndex;
+    public int CurrentIndex => _currentIndex;
 
-    public void AddElement<T>(T vehicle) where T : Vehicle
+    public void AddElement<T>() where T : Vehicle
     {
-        currentVehicle = vehicle;
-        vehiclesList.Add(currentVehicle);
-        currentIndex = vehiclesList.Count - 1;
+        T newAsset = CreateAsset<T>();
+
+        _currentVehicle = newAsset;
+        _vehiclesList.Add(_currentVehicle);
+        _currentIndex = _vehiclesList.Count - 1;
     }
 
     public void RemoveElement()
     {
-        if (vehiclesList.Count > 1)
+        DeleteAsset(_currentVehicle);
+        _vehiclesList.RemoveAt(_currentIndex);
+
+        if (_vehiclesList.Count >= 1)
         {
-            vehiclesList.RemoveAt(currentIndex);
+            if (_currentIndex == _vehiclesList.Count)
+                _currentIndex--;
 
-            if (currentIndex == vehiclesList.Count)
-                currentIndex--;
-
-            currentVehicle = vehiclesList[currentIndex];
+            _currentVehicle = _vehiclesList[_currentIndex];
         }
         else
         {
-            RemoveAll();
+            AddElement<Vehicle>();
         }
     }
 
     public void RemoveAll()
     {
-        vehiclesList.Clear();
-        currentVehicle = new Vehicle();
-        vehiclesList.Add(currentVehicle);
-        currentIndex = 0;
+        int count = _vehiclesList.Count;
+        for (int i = 0; i < count; i++)
+            RemoveElement();
     }
 
     public Vehicle GetNext()
     {
-        if (currentIndex < vehiclesList.Count - 1)
-            currentIndex++;
+        if (_currentIndex < _vehiclesList.Count - 1)
+            _currentIndex++;
 
-        currentVehicle = vehiclesList[currentIndex];
+        _currentVehicle = _vehiclesList[_currentIndex];
 
-        return currentVehicle;
+        return _currentVehicle;
     }
 
     public Vehicle GetPrevious()
     {
-        if (currentIndex > 0)
-            currentIndex--;
+        if (_currentIndex > 0)
+            _currentIndex--;
 
-        currentVehicle = vehiclesList[currentIndex];
+        _currentVehicle = _vehiclesList[_currentIndex];
 
-        return currentVehicle;
+        return _currentVehicle;
     }
 
-    public void SetCurrentVehicle(Vehicle vehicle)
+    public void SelectCurrentVehicle(Vehicle vehicle)
     {
-        currentVehicle = vehicle;
-        currentIndex = vehiclesList.IndexOf(vehicle);
+        _currentVehicle = vehicle;
+        _currentIndex = _vehiclesList.IndexOf(vehicle);
     }
 
-    public void ChangeVehicleType()
+    public void ConvertCurrentVehicleTo(Type type)
     {
+        if (type == typeof(Airplane))
+        {
+            ConvertCurrentVehicleTo<Airplane>();
+            return;
+        }
 
+        if (type == typeof(Bike))
+        {
+            ConvertCurrentVehicleTo<Bike>();
+            return;
+        }
+
+        if (type == typeof(Car))
+        {
+            ConvertCurrentVehicleTo<Car>();
+            return;
+        }
+
+        if (type == typeof(Ship))
+        {
+            ConvertCurrentVehicleTo<Ship>();
+            return;
+        }
+
+        throw new NotImplementedException();
+    }
+
+    private void ConvertCurrentVehicleTo<T>() where T: Vehicle
+    {
+        T newAsset = CreateAsset<T>();
+        newAsset.CopyInfoFrom(_currentVehicle);
+        DeleteAsset(_currentVehicle);
+
+        _currentVehicle = newAsset;
+        _vehiclesList[_currentIndex] = _currentVehicle;
+    }
+
+    private void DeleteAsset<T>(T asset) where T: Vehicle
+    {
+        AssetDatabase.RemoveObjectFromAsset(asset);
+        AssetDatabase.SaveAssets();
+    }
+
+    private T CreateAsset<T>() where T: Vehicle
+    {
+        T asset = CreateInstance<T>();
+
+        if (!AssetDatabase.Contains(this))
+            return null;
+
+        asset.name = $"new{asset.GetType()}";
+
+        AssetDatabase.AddObjectToAsset(asset, this);
+        AssetDatabase.SaveAssets();
+
+        return asset;
     }
 }

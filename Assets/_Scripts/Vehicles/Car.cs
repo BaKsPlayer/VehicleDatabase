@@ -1,9 +1,10 @@
 using UnityEngine;
 
+[System.Serializable]
 public class Car : Vehicle
 {
-    [SerializeField] protected string color;
-    public string Color => color;
+    [SerializeField] protected string _color;
+    public string Color => _color;
 
     public override string GetDescription()
     {
